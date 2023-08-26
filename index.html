@@ -3,131 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>冻结壁预测_2</title>
+    <title>登录界面2</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/register.css">
     <style>
-        table {
-        border-collapse: collapse;
-        margin:  100px auto;
+        .alert{
+            transition: 0.5s;
+            opacity: 0;
         }
-
-        td {
-            text-align: center;
-        width: 90px;
-        height: 30px;
-        border: 2px solid black;
+        .alert.show{
+            opacity: 1;
         }
-        input {
-          width: 90px;
-        height: 30px;
-        border: 1px   black;
-        }
-        .btn {
-            width: 300px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            display: block;
-            margin: 0 auto;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        div{
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin: 60px;
-    }
     </style>
 </head>
 <body>
-    <table>
-        <tbody>
-            <tr style="font-weight: 600;">
-                <td>**数据</td> <td>**数据</td><td>**数据</td><td>**数据</td>
-                <td>**数据</td> <td>**数据</td><td>**数据</td><td>**数据</td>
-                <td>**数据</td>
-              </tr>
-          <tr>
-            <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-          <tr>
-           <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-          <tr>
-           <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-          <tr>
-           <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-          <tr>
-           <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-          <tr>
-           <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-          <tr>
-           <td><input type="text"></td> <td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-            <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
-          </tr>
-        </tbody>
-    </table>
-    <form action="冻结壁预测_3.html">
-      <div>
-        <button class="btn" >确定</button>
-      </div>
-    </form>
+    <div class="w">
+        <h3>register</h3>
+        <!-- 登录结果提示框 -->
+        <div class="alert alert-success" role="alert"></div>
+        <!-- 表单 -->
+        <div class="registerarea">
+             <form>
+            <div class="reg_form">
+                <ul type="none">
+                    <li><label for="username">账户：</label><input type="text" placeholder="请输入账户" class="username"></li>
+                    <li><label for="password">密码：</label>
+                            <!-- <img src="imageopen.jpg" alt="" id="eye"> -->
+                        <input type="password" placeholder="请输入密码" class="password">
+                    </li>
+                    <li><button type="button" class="btn">登录</button></li>
+                    <!-- 用户名：dongjieproject密码：42014002 -->
+                </ul>
+            </form>
+            </div>
+        </div>
+    </div>
     <script>
-      document.querySelector('form').addEventListener('submit', function(e) {
-       // e.preventDefault(); // 阻止表单默认提交行为,防止刷新页面
-    
-        // 获取表单数据
-        var tableData = [];
-        var rows = document.querySelectorAll('table tr');//捕获行数
-        for (var i = 1; i < rows.length; i++)
-         {
-          var rowData = [];
-          var cells = rows[i].querySelectorAll('td input');//捕获列数
-            for (var j = 0; j < cells.length; j++) {
-                rowData.push(cells[j].value);
+        flag_sum=0
+        const myAlert = document.querySelector('.alert')
+        function alertFn(msg,isSuccess){
+            myAlert.classList.add('show')
+            myAlert.innerText=msg
+            const bgStyle=isSuccess?'alert-success':'alert-danger'
+            myAlert.classList.add(bgStyle)
+            setTimeout(()=>{
+                myAlert.classList.remove('show')
+                myAlert.classList.remove(bgStyle)
+            },2000)
+            if(flag_sum==1)
+            {
+                window.open('冻结壁预测_2.html','_self')
+                console.log(flag_sum)
             }
-          tableData.push(rowData);
+            
         }
-    
-        // 创建Excel文件
-        var csvContent = "data:text/csv;charset=utf-8,";//csv格式的文本字符串
-        tableData.forEach(function(rowArray) {
-          var row = rowArray.join(",");
-          csvContent += row + "\r\n";
-        });
-    
-        // 创建一个链接并下载Excel文件
-        var encodedUri = encodeURI(csvContent);//编码
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "冻结预测.csv");
-        link.click();
-    console.log(encodedUri);
-        // 传输给库函数
-        // 这一步需要根据具体的后端语言和库函数进行处理，将Excel文件上传到服务器并传输给库函数进行处理。
-      });
-          </script>
+        document.querySelector('.btn').addEventListener(
+            'click',()=>{
+                const username=document.querySelector('.username').value
+                const password=document.querySelector('.password').value
+                if(username=="dongjieproject"&&password=="42014002")
+                 flag_sum=1
+                else flag_sum=2
+                if(flag_sum==1){
+                alertFn("登录成功", true)
+                }
+                if(flag_sum==2){
+                        alertFn("账户名或密码错误", false)
+                    }
+                })
+    </script>
 </body>
 </html>
